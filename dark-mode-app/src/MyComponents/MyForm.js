@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 
 export default function MyForm(props) {
@@ -6,29 +7,35 @@ export default function MyForm(props) {
         // console.log("upper case was clicked" + text);
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Convert to upper case", "success");
     }
     const handleLoClick = () => {
         // console.log("upper case was clicked" + text);
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Convert to lower case", "success");
     }
     const handleClearClick = () => {
         // console.log("upper case was clicked" + text);
         let newText = '';
         setText(newText);
+        props.showAlert("Text Cleared", "success");
     }
     const handleOnChange = (event) => {
         // console.log("On Change");
         setText(event.target.value);
+
     }
     const handleCopy = () => {
         var text = document.getElementById("myBox");
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Copied to clipboard", "success");
     }
     const handleExtraSpaces = () => {
         let newText = text.split(/[ ]+/);
-        setText(newText.join(" "))
+        setText(newText.join(" "));
+        props.showAlert("Extra spaces removed", "success");
     }
     const [text, setText] = useState('');
     // setText("new text");
@@ -60,6 +67,7 @@ export default function MyForm(props) {
                 <p>{0.008 * text.split(" ").length}Minutes read</p>
                 <h2>Preview</h2>
                 <p>{text.length > 0 ? text : "Enter something in the above textbox to preview it here"}</p>
+                
             </div>
         </>
 
