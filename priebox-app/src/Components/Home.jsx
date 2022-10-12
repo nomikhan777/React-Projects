@@ -5,16 +5,18 @@ function Home() {
   return (
     <div className="w-75 mx-auto">
       <div className="d-flex justify-content-between align-items-center">
-        <div className="">
-          <h1 className="display-2">
-            Reach More <br />{" "}
-            <span style={{ color: "#5A29A7" }}>Customers,</span> <br />
-            Get More <span style={{ color: "#5A29A7" }}>Sales!</span>
-          </h1>
-          <button className="mt-5 btn btn-outline-primary">
-            Warm - up my email{" "}
-          </button>
-        </div>
+        
+          <div className="col-lg-6 col-12">
+            <h1 className="display-2 ">
+              Reach More <br />{" "}
+              <span style={{ color: "#5A29A7" }}>Customers,</span> <br />
+              Get More <span style={{ color: "#5A29A7" }}>Sales!</span>
+            </h1>
+            <button className="mt-5 btn btn-outline-primary">
+              Warm - up my email{" "}
+            </button>
+          </div>
+        
         <div>
           <img src={home} alt="" />
         </div>
