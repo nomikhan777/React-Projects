@@ -12,12 +12,15 @@ const News = (props) => {
 
   const updateNews = async () => {
     props.setProgress(10);
-    const url = `https://newsapi.org/v2/top-headlines?country=in&category=${props.category}
-    &apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
+    // const url = `https://newsapi.org/v2/top-headlines?country=in&category=${props.category}
+    // &apiKey=3dd3a3b9a264444382b657907c81832c&page=${page}&pageSize=${props.pageSize}`;
+    console.log(props.category);
+    let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=3dd3a3b9a264444382b657907c81832c`;
     setLoading(true);
     let data = await fetch(url);
     props.setProgress(30);
     let parsedData = await data.json();
+    console.log(parsedData);
     props.setProgress(70);
 
     setarticles(parsedData.articles);
