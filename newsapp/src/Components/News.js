@@ -15,7 +15,7 @@ const News = (props) => {
     // const url = `https://newsapi.org/v2/top-headlines?country=in&category=${props.category}
     // &apiKey=3dd3a3b9a264444382b657907c81832c&page=${page}&pageSize=${props.pageSize}`;
     console.log(props.category);
-    let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=3dd3a3b9a264444382b657907c81832c`;
+    let url = `nhttps://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=3dd3a3b9a264444382b657907c81832c`;
     setLoading(true);
     let data = await fetch(url);
     props.setProgress(30);
