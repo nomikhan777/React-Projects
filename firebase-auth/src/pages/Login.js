@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import React, { useState, useEffect, Children } from "react";
+import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../config/firebase";
 
 const initialState = { email: "", password: "" };
@@ -19,9 +19,11 @@ export default function Login() {
         // ...
       } else {
         // User is signed out
-        // ...
+        console.log("user is logged out")
+        setUser({});
       }
     });
+    console.log(auth.currentUser)
   }, []);
 
   const handleChange = (e) => {
@@ -48,7 +50,31 @@ export default function Login() {
         // ..
       });
   };
-  return (
+
+
+    const handleLogout = () =>{
+      console.log("log out button clicked")
+      signOut(auth)
+      .then(()=>{
+        console.log("user logout")
+      })
+      .catch((err)=>{
+    console.error(err)
+      })
+    }
+    const showAuthUser = () =>{
+      console.log(auth.currentUser)
+
+
+    }
+
+
+    const UpdateUserProfile = () =>{
+
+    } 
+
+    
+      return (
     <main>
       <div className="py-5 w-100">
         <div className="container">
@@ -61,7 +87,12 @@ export default function Login() {
                 <h2 className="text-white">
                   User UID: {user.uid}
                 </h2>
-                <button className="btn btn-outline-danger">Logout</button>
+                <h2 className="text-white">
+                  User Display Name: {user.displayName}
+                </h2>
+                <button className="btn btn-outline-danger" onClick={handleLogout}>Logout</button><br />
+                <button className="btn btn-outline-info my-3" onClick={showAuthUser}>Show Auth Current User</button><br />
+                <button className="btn btn-outline-success" onClick={UpdateUserProfile}>Update User Profile</button><br />
               </div>
             </div>
           ) : (
