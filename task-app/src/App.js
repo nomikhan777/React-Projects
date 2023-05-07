@@ -1,8 +1,11 @@
 import './App.scss';
+import Routes from "./pages/Routes"
 
 function App() {
   return (
-    < ></>
+    <>
+    <Routes />
+    </>
   );
 }
 
