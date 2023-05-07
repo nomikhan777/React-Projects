@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "firebase": "^9.21.0",
+    "react-router-dom": "^6.11.1",
+    "sass": "^1.62.1"
+  }
+}
