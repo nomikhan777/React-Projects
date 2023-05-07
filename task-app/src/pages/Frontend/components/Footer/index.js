@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function Hero() {
+export default function index() {
   return (
     <div>
-      Hero section
+        index
+        
+      
     </div>
   )
 }

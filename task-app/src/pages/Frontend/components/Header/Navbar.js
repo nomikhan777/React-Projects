@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function Hero() {
+export default function Navbar() {
   return (
     <div>
-      Hero section
+        Navbar
+      
     </div>
   )
 }

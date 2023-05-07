@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function Hero() {
+export default function Topbar() {
   return (
     <div>
-      Hero section
+        Topbar
+      
     </div>
   )
 }
