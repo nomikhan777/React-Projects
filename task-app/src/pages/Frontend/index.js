@@ -8,6 +8,7 @@ export default function index() {
   return (
     <>
     <Header/>
+    <main>
     <Routes>
         <Route path='/'>
             <Route index element ={< Home />}/>
@@ -15,6 +16,7 @@ export default function index() {
         </Route>
 
     </Routes>
+    </main>
     <Footer/>
       
     </>
