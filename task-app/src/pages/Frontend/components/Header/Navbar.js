@@ -1,6 +1,19 @@
-import React from 'react'
+
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../../../context/AuthContext';
 export default function Navbar() {
+
+  const {state, dispatch} = useContext(AuthContext)
+  const {isAuthenticated} = state
+  console.log(dispatch)
+ 
+ 
+
+  const handleLogout = ()=>{
+    dispatch({type:"LOGOUT"})
+    alert("logged out")
+  }
   return (
     <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
   <div className="container">
@@ -11,15 +24,19 @@ export default function Navbar() {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Home</a>
+          <Link to="/" className="nav-link active">Home</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">Link</a>
+          <Link to="/about" className="nav-link active">About</Link>
         </li>
-        <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li className="nav-item">
+          <Link to="/contact" className="nav-link active">Contact</Link>
+        </li>
+        
+        {/* <li className="nav-item dropdown">
+          <Link to="/" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
-          </a>
+          </Link>
           <ul className="dropdown-menu">
             <li><a className="dropdown-item" href="#">Action</a></li>
             <li><a className="dropdown-item" href="#">Another action</a></li>
@@ -29,11 +46,18 @@ export default function Navbar() {
         </li>
         <li className="nav-item">
           <a className="nav-link disabled">Disabled</a>
-        </li>
+        </li> */}
       </ul>
-      <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
+      <form className="d-flex">
+        {!isAuthenticated
+        ?        <Link to="/login" className="btn btn-primary text-white">Login</Link>
+
+      :<>
+              <Link to="/dashboard" className="btn btn-primary btn-sm text-white me-2">Dashboard</Link>
+              <button className='btn btn-danger btn-sm' onClick={handleLogout}>Logout</button>
+
+      </>
+      }
       </form>
     </div>
   </div>
