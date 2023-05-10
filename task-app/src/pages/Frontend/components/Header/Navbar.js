@@ -50,7 +50,7 @@ export default function Navbar() {
       </ul>
       <form className="d-flex">
         {!isAuthenticated
-        ?        <Link to="/login" className="btn btn-primary text-white">Login</Link>
+        ?        <Link to="/authentication/login" className="btn btn-primary text-white">Login</Link>
 
       :<>
               <Link to="/dashboard" className="btn btn-primary btn-sm text-white me-2">Dashboard</Link>

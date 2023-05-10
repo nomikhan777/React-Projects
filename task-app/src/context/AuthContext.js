@@ -2,7 +2,7 @@ import React,{useReducer,createContext} from 'react'
 
 export const AuthContext = createContext();
 
-const initialState = {isAuthenticated: true}
+const initialState = {isAuthenticated: false}
 
 const reducer = ((state,action)=>{
     // console.log(state)

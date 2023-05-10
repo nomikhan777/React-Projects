@@ -7,9 +7,9 @@ export default function index() {
   return (
     <BrowserRouter>
     <Routes>
-        <Route index="/*" element ={<Frontend/>}/>
-        <Route index="/auth/*" element ={<Authentication/>}/>
-        <Route index="/dashboard/*" element ={<Dashboard/>}/>
+        <Route path="/*" element ={<Frontend/>}/>
+        <Route path="/authentication/*" element ={<Authentication/>}/>
+        <Route path="/dashboard/*" element ={<Dashboard/>}/>
 
     </Routes>
       
