@@ -7,13 +7,11 @@ import ForgotPassword from './ForgotPassword'
 export default function index() {
   return (
     <Routes>
-        <Route path='/'>
-            <Route path='login' element = {<Login/>} />
-            <Route path='register' element = {<Register/>}/>
-            <Route path='forgot-password' element = {<ForgotPassword/>}>
-
-        </Route>
-      
+      <Route path='/'>
+        <Route path='login' element={<Login />} />
+        <Route path='register' element={<Register />} />
+        <Route path='forgot-password' element={<ForgotPassword />} />
+      </Route>
     </Routes>
   )
 }
