@@ -6,7 +6,7 @@ export default function Navbar() {
 
   const {state, dispatch} = useContext(AuthContext)
   const {isAuthenticated} = state
-  console.log(dispatch)
+  // console.log(dispatch)
  
  
 

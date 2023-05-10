@@ -5,8 +5,8 @@ export const AuthContext = createContext();
 const initialState = {isAuthenticated: true}
 
 const reducer = ((state,action)=>{
-    console.log(state)
-    console.log(action)
+    // console.log(state)
+    // console.log(action)
     switch (action.type){
         case "LOGIN ":
             return {isAuthenticated : true}
