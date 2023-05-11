@@ -27,7 +27,7 @@ export default function Login() {
     <div className="auth">
       <div className="container">
         <div className="row">
-          <div className="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+          <div className="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
             <div className="card p-2 p-md-3 p-lg-5">
               <div className="row">
                 <div className="col">
