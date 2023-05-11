@@ -8,4 +8,15 @@ $buttonColorAuth: #EE6784;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    button{
+        background-color: $buttonColorAuth;
+        color: white;
+        // &:hover{
+        //     color: white !important;
+        // }
+        // &:focus{
+        //     color: white !important;
+        // }
+    }
 }

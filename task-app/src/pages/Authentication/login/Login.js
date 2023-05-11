@@ -2,22 +2,27 @@ import React, {useState}from "react";
 
 export default function Login() {
   const initialState = {email:"", password: ""}
-
-  const {state, setState} = useState(initialState);
+  
+  // Destructure state and setState from the useState hook
+  const [state, setState] = useState(initialState);
+  
+  // Define isProcessing state and setIsProcessing setter function
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleChange = e =>{
-    setState(s => ({...s,[e.target.name]:e.target.value}))
+    setState(prevState => ({...prevState,[e.target.name]:e.target.value}))
   }
+  
   const handleLogin = (e) =>{
     e.preventDefault()
     let {email, password} = state
 
+    setIsProcessing(true)
     console.log(email);
     console.log(password);
-
-
-
+    setIsProcessing(false);
   }
+
   return (
     <div className="auth">
       <div className="container">
@@ -29,6 +34,7 @@ export default function Login() {
                   <h3 className="mb-4">LOGIN</h3>
                 </div>
               </div>
+              <form onSubmit={handleLogin}>
               <div className="row mb-3">
                 <div className="col">
                   <label htmlFor="email">Email</label>
@@ -43,9 +49,15 @@ export default function Login() {
               </div>
               <div className="row">
                 <div className="col">
-                  <button></button>
+                  <button className="btn w-100" disabled={isProcessing}>
+                    {!isProcessing
+                      ? "Login"
+                      : <div className="spinner-grow spinner-grow-sm"></div>
+                    }
+                  </button>
                 </div>
               </div>
+              </form>
             </div>
           </div>
         </div>
