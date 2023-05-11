@@ -1,4 +1,5 @@
 import React, {useState}from "react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const initialState = {email:"", password: ""}
@@ -58,6 +59,13 @@ export default function Login() {
                 </div>
               </div>
               </form>
+              <div className="row mt-4">
+                <div className="col">
+                  <p className="mb-0 text-center">Need an account ? <Link to="/authentication/register" className="text-dark"> 
+                  Register</Link></p>
+
+                </div>
+              </div>
             </div>
           </div>
         </div>
