@@ -1,5 +1,8 @@
 import React, {useState}from "react";
 import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../../../config/firebase';
+
 
 export default function Login() {
   const initialState = {email:"", password: ""}
@@ -18,9 +21,23 @@ export default function Login() {
     e.preventDefault()
     let {email, password} = state
 
+    
     setIsProcessing(true)
-    console.log(email);
-    console.log(password);
+
+        signInWithEmailAndPassword( auth, email, password)
+        .then((userCredential)=>{
+          let user = userCredential.user
+          console.log(user)
+        })
+        .catch(err=>{
+          console.error(err)
+        })
+
+        .finally(()=>{
+
+          setIsProcessing(false);
+
+        })
     setIsProcessing(false);
   }
 

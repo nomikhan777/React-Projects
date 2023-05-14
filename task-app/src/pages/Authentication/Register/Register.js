@@ -1,7 +1,8 @@
 import React,{useState}from 'react'
 import { Link } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../config/firebase';
+import { doc, setDoc } from 'firebase/firestore/lite';
+import { auth , firestore} from '../../../config/firebase';
 export default function Register() {
   
       const initialState = {email:"", password: ""}
@@ -26,7 +27,8 @@ export default function Register() {
         createUserWithEmailAndPassword( auth, email, password)
         .then((userCredential)=>{
           let user = userCredential.user
-          console.log(user)
+          addDocument(user)
+          console.log("user created")
         })
         .catch(err=>{
           console.error(err)
@@ -37,8 +39,17 @@ export default function Register() {
           setIsProcessing(false);
 
         })
-        // console.log(email);
-        // console.log(password);
+        
+      }
+
+      const addDocument = async(user) => {
+        await setDoc(doc(firestore, "users", user.uid), {
+          firstName: "",
+          lastName:"",
+          uid: user.uid,
+        });
+        console.log("user document created at firestore")
+
       }
     
       return (
