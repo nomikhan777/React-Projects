@@ -1,9 +1,12 @@
-import React,{useState}from 'react'
+import React,{useState,useContext}from 'react'
 import { Link } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore/lite';
 import { auth , firestore} from '../../../config/firebase';
+import { AuthContext } from '../../../context/AuthContext';
 export default function Register() {
+
+  const {dispatch} = useContext(AuthContext)
   
       const initialState = {email:"", password: ""}
       
@@ -32,23 +35,28 @@ export default function Register() {
         })
         .catch(err=>{
           console.error(err)
-        })
-
-        .finally(()=>{
-
           setIsProcessing(false);
-
         })
-        
+      
       }
 
       const addDocument = async(user) => {
-        await setDoc(doc(firestore, "users", user.uid), {
-          firstName: "",
-          lastName:"",
-          uid: user.uid,
-        });
-        console.log("user document created at firestore")
+        try {
+          await setDoc(doc(firestore, "users", user.uid), {
+            firstName: "",
+            lastName:"",
+            uid: user.uid,
+          });
+          
+          console.log("user document created at firestore")
+          dispatch({type: "LOGIN"})
+        } catch (err) {
+
+          console.error(err)
+          
+        }
+        setIsProcessing(false);
+
 
       }
     

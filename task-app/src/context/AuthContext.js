@@ -1,4 +1,6 @@
-import React,{useReducer,createContext} from 'react'
+import React,{useReducer,useEffect,createContext} from 'react'
+import { auth } from '../config/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 export const AuthContext = createContext();
 
@@ -8,7 +10,7 @@ const reducer = ((state,action)=>{
     // console.log(state)
     // console.log(action)
     switch (action.type){
-        case "LOGIN ":
+        case "LOGIN":
             return {isAuthenticated : true}
             
             case "LOGOUT":
@@ -23,8 +25,29 @@ const reducer = ((state,action)=>{
 export default function AuthContextProvider(props) {
 
     const [state, dispatch] = useReducer(reducer, initialState)
+
+    useEffect (() => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          console.log(user)
+          console.log("user is signed in ")
+          dispatch({type: "LOGIN"})
+
+          // ...
+        } else {
+          console.log("user is sign out ")
+          // ...
+        }
+      });
+      
+
+
+    },[])
+
   return (
-    <AuthContext.Provider value={{state, dispatch}}>
+    <AuthContext.Provider value={{authentication:state, dispatch}}>
       {props.children}
     </AuthContext.Provider>
   )

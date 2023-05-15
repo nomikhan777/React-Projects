@@ -2,17 +2,24 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../../context/AuthContext';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../../../config/firebase';
 export default function Navbar() {
 
-  const {state, dispatch} = useContext(AuthContext)
-  const {isAuthenticated} = state
-  // console.log(dispatch)
+  const {authentication, dispatch} = useContext(AuthContext)
+  const {isAuthenticated} = authentication
  
  
 
   const handleLogout = ()=>{
-    dispatch({type:"LOGOUT"})
-    alert("logged out")
+    signOut(auth)
+    .then(()=>{
+      dispatch({type: "LOGOUT" })
+
+    })
+    .catch(err=>{
+      console.error(err)
+    })
   }
   return (
     <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
@@ -48,7 +55,7 @@ export default function Navbar() {
           <a className="nav-link disabled">Disabled</a>
         </li> */}
       </ul>
-      <form className="d-flex">
+      <div className="d-flex">
         {!isAuthenticated
         ?        <Link to="/authentication/login" className="btn btn-primary text-white">Login</Link>
 
@@ -58,7 +65,7 @@ export default function Navbar() {
 
       </>
       }
-      </form>
+      </div>
     </div>
   </div>
 </nav>

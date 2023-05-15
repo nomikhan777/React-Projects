@@ -2,9 +2,10 @@ import React, {useState}from "react";
 import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../../config/firebase';
-
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate()
   const initialState = {email:"", password: ""}
   
   // Destructure state and setState from the useState hook
@@ -16,7 +17,6 @@ export default function Login() {
   const handleChange = e =>{
     setState(prevState => ({...prevState,[e.target.name]:e.target.value}))
   }
-  
   const handleLogin = (e) =>{
     e.preventDefault()
     let {email, password} = state
@@ -28,6 +28,8 @@ export default function Login() {
         .then((userCredential)=>{
           let user = userCredential.user
           console.log(user)
+
+          navigate("/dashboard")
         })
         .catch(err=>{
           console.error(err)
