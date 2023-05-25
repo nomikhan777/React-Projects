@@ -33,7 +33,7 @@ export default function AuthContextProvider(props) {
           // https://firebase.google.com/docs/reference/js/firebase.User
           console.log(user)
           console.log("user is signed in ")
-          dispatch({type: "LOGIN"})
+          dispatch({type: "LOGIN", payload:{ user }})
 
           // ...
         } else {
